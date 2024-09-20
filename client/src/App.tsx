@@ -1,7 +1,7 @@
 import './App.css'
 import Home from './Home.tsx'
 import Staff from './Staff.tsx'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
