@@ -1,7 +1,6 @@
 import './App.css'
 
-function App() {
-
+function Staff() {
   return (
     <>
       <form action="/supervisor">
@@ -14,5 +13,5 @@ function App() {
   )
 }
 
-export default App
+export default Staff
 
