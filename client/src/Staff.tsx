@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 function Staff() {
   const [formData, setFormData] = useState({
-    choice: "good",
+    status: "good",
     comment: "",
   })
 
@@ -33,7 +33,7 @@ function Staff() {
   const handleButtonClick = (choice: string) => {
     setFormData((prevData) => ({
       ...prevData,
-      choice,
+      status: choice,
     }));
   };
 
