@@ -24,6 +24,7 @@ export default function Map() {
   return (
     <GoogleMap mapContainerStyle={mapContainerStyle} zoom={10} center={center}>
       <Marker position={center} />
+      <Marker position={{ lat: 40.719074, lng: -73 }} />
     </GoogleMap>
   );
 }
