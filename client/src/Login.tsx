@@ -3,29 +3,24 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-export default function App() {
-  const [count, setCount] = useState(0)
-
+export default function Login() {
+  let [userName, setUserName] = useState<string>('')
+  let [password, setPassword] = useState<string>('')
   return (
     <>
-    <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Load Star</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <nav >LoadStar Dashboard</nav>
-    <button>UserName:</button>
-    <button>Password:</button>
+    <div>
+      </div>
+      <h1>LoadStar</h1>
+      <div className="card">
+    <h3>UserName:</h3> 
+    <input value={userName}></input>
+    <h3>Password:</h3>
+    <input value={password}></input>
+    </div>
     <button>Login</button>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-       
 
     </>
   )
 }
 
-export default Login
+
