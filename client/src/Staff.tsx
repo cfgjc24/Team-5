@@ -1,10 +1,14 @@
-import './Staff.css'
-
+import { useState } from 'react';
 
 function Staff() {
+  const [formData, setFormData] = useState({
+    choice: "good",
+    comment: "",
+  })
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(formData)
 
     try {
       const response = await fetch('/supervisor', {
@@ -26,37 +30,32 @@ function Staff() {
     }
   };
 
-  const goodButton= () =>{
-    console.log("Great!");
+  const handleButtonClick = (choice: string) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      choice,
+    }));
   };
 
-  const extendTime = () => {
-    const extraTime = window.prompt("Enter the amount of extra time (in minutes):");
-    if (extraTime) {
-      console.log(`You have requested ${extraTime} extra minutes.`);
-    } else {
-      console.log("No extra time entered.");
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
     }
-  };
-
-  const smallEmergency = () =>{
-    console.log("Supervisors have been notified");
-  };
-
-  const sos = () => {
-    console.log("Appropriate measures have been taken");
-  };
+    ));
+  }
 
   return (
     <>
       <form onSubmit={handleSubmit}>
         <div>
-        <button type="button" onClick={goodButton}>Great</button>
-        <button type="button" onClick={extendTime}>Extend Time</button>
-        <button type ="button" onClick = {smallEmergency}>Emergency</button>
-        <button type ="button" onClick = {sos}>SOS</button>
+          <button type="button" onClick={() => handleButtonClick('good')}>Great</button>
+          <button type="button" onClick={() => handleButtonClick('extend')}>Extend Time</button>
+          <button type="button" onClick={() => handleButtonClick('emergency')}>Emergency</button>
+          <button type="button" onClick={() => handleButtonClick('sos')}>SOS</button>
         </div>
-        <input type="text" id="test" name="test"></input>
+        <input type="text" id="comment" name="comment" value={formData.comment} onChange={handleInputChange}></input>
         <input type="submit" value="Submit"></input>
       </form>
     </>
