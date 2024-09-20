@@ -4,15 +4,12 @@ function App() {
 
   return (
     <>
-      // buttons
-      <div>
-      <div>
-      // comments
-      </div>
-      </div>
-      // Submit button
-      <div>
-      </div>
+      <form action="/supervisor">
+        <div>
+        </div>
+        <input type="text" id="test" name="test"></input>
+        <input type="submit" value="Submit"></input>
+      </form>
     </>
   )
 }
