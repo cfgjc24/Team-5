@@ -13,11 +13,6 @@ const center = {
   lng: -74.050552,
 };
 
-const locations = [
-  { lat: 40.650002, lng: -73.949997 },
-  { lat: 42.5159, lng: -73.6101 },
-];
-
 export default function Map() {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: mapKey,
@@ -29,10 +24,6 @@ export default function Map() {
   return (
     <GoogleMap mapContainerStyle={mapContainerStyle} zoom={10} center={center}>
       <Marker position={center} />
-
-      {locations.map((location, index) => (
-        <Marker key={index} position={location} />
-      ))}
     </GoogleMap>
   );
 }
