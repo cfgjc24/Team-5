@@ -1,17 +1,25 @@
-import './App.css'
-import Home from './Home.tsx'
-import Staff from './Staff.tsx'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { useState } from 'react';
+import './App.css';
+import Home from './Home';
+import Staff from './Staff';
 
 function App() {
+  const [isClockedIn, setIsClockedIn] = useState(false);
+  
+  const handleClockIn = () => {
+    setIsClockedIn(true);
+    
+  };
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/staff" element={<Staff />} />
-      </Routes>
-    </Router>
-  )
+    <div>
+      {isClockedIn ? (
+        <Staff />
+      ) : (
+        <Home onClockIn={handleClockIn} />
+      )}
+    </div>
+  );
 }
 
-export default App
+export default App;

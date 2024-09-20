@@ -18,7 +18,7 @@ function Staff() {
   const small_emergency = () =>{
     console.log("Supervisors have been notified");
   };
-
+  
   const sos = () => {
     console.log("Appropriate measures have been taken");
   };
