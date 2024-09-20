@@ -4,7 +4,7 @@ import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 const mapKey = import.meta.env.VITE_MAP_API_KEY;
 
 const mapContainerStyle = {
-  width: "800px",
+  width: "600px",
   height: "400px",
 };
 
@@ -12,6 +12,11 @@ const center = {
   lat: 40.719074,
   lng: -74.050552,
 };
+
+const locations = [
+  { lat: 40.650002, lng: -73.949997 },
+  { lat: 42.5159, lng: -73.6101 },
+];
 
 export default function Map() {
   const { isLoaded, loadError } = useLoadScript({
@@ -24,6 +29,10 @@ export default function Map() {
   return (
     <GoogleMap mapContainerStyle={mapContainerStyle} zoom={10} center={center}>
       <Marker position={center} />
+
+      {locations.map((location, index) => (
+        <Marker key={index} position={location} />
+      ))}
     </GoogleMap>
   );
 }
