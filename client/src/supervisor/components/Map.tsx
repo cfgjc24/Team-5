@@ -6,13 +6,14 @@ import {
 } from "@react-google-maps/api";
 import { useState, useEffect } from "react";
 import { getMarkers } from "../../config/config.tsx";
-import {Slider, SliderValue} from "@nextui-org/slider"
+import { Slider, SliderValue } from "@nextui-org/slider";
 
+// Load API key from environment variable
 const mapKey = import.meta.env.VITE_MAP_API_KEY;
 
 const mapContainerStyle = {
-  width: "100%",
-  height: "100%",
+  width: "600px",
+  height: "400px",
 };
 
 const center = {
@@ -21,14 +22,6 @@ const center = {
 };
 
 export default function Map() {
-  const [selectedTime,setSelectedTime] = useState(720) ;
-  const [selectedHour,setSelectedHour] = useState(12) ;
-  const [selectedMin,setSelectedMin] = useState("00") ;
-  const updateSlider = (value: SliderValue) => {
-    setSelectedTime(Number(value))
-    setSelectedHour(Math.floor(Number(value)%720) <= 120 ? 12 : Math.floor((Number(value)%720)/60))
-    setSelectedMin(Number(value)%60 < 10 ? "0"+Number(value)%60 : ""+Number(value)%60)
-  }
   const [markerList, setMarkerList] = useState([{}]);
   const [selectedMarker, setSelectedMarker] = useState<any | null>(null);
 
@@ -48,20 +41,18 @@ export default function Map() {
 
   return (
     <>
-      <Slider onChange = {updateSlider} value = {selectedTime} maxValue = {1439}>
-      </Slider>
-      <h3 className="text-center bg-zinc-800">{selectedTime / 60 < 12 ? <>{selectedHour}:{selectedMin} AM</> : <>{selectedHour}:{selectedMin} PM</>}</h3>
-
-      <GoogleMap mapContainerStyle={mapContainerStyle} zoom={10} center={center}>
-        <Marker key="a" position={center} />
+      <GoogleMap
+        mapContainerStyle={mapContainerStyle}
+        zoom={10}
+        center={center}
+      >
+        <Marker position={center} />
         {markerList.map((marker) =>
-          (!("active" in marker) || (Boolean(marker.active) == false)) ? (
+          !("active" in marker) ? (
             <></>
           ) : (
-            // <Marker key="a" position={marker} />
-
             <Marker
-              key={marker.name}
+              key="a"
               position={{
                 lat: marker.coordinates.latitude,
                 lng: marker.coordinates.longitude,
@@ -78,7 +69,13 @@ export default function Map() {
             }}
             onCloseClick={() => setSelectedMarker(null)} // Close info window
           >
-            <div>
+            <div
+              style={{
+                color: "#000",
+                opacity: 1,
+                textAlign: "center",
+              }}
+            >
               <p>
                 <strong>Name:</strong> {selectedMarker.name}
               </p>
@@ -92,8 +89,8 @@ export default function Map() {
                 ).toLocaleTimeString()}
               </p>
               <p>
-                <strong>Location:</strong> {selectedMarker.coordinates.latitude},
-                {selectedMarker.coordinates.longitude}
+                <strong>Location:</strong> {selectedMarker.coordinates.latitude}
+                ,{selectedMarker.coordinates.longitude}
               </p>
             </div>
           </InfoWindow>
@@ -101,8 +98,4 @@ export default function Map() {
       </GoogleMap>
     </>
   );
-
-
-
-  
 }
