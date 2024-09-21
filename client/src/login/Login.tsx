@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Input, Button } from "@nextui-org/react";
 import { EyeFilledIcon } from "./EyeFilledIcon";
 import { EyeSlashFilledIcon } from "./EyeSlashFilledIcon";
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom' ;
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-  const [isVisible, setIsVisible] = React.useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [username, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const toggleVisibility = () => setIsVisible(!isVisible);
-  const [userName, setUserName] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
 
   const handleUserNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserName(e.target.value);
@@ -20,39 +20,53 @@ export default function Login() {
     setPassword(e.target.value);
   };
 
-  const navigate = useNavigate();
-
   const handleSubmit = () => {
-    if (userName == "supervisor") {
-      navigate("/supervisor") 
-    } ;
-    if (userName == "staff") {
-      navigate("/clockin") 
-    } ;
-   
-  }
+    const users = localStorage.getItem("users")
+      ? JSON.parse(localStorage.getItem("users")!) || []
+      : [];
+    const foundUser = users.find(
+      (user: { username: string; password: string }) =>
+        user.username === username && user.password === password
+    );
+
+    if (foundUser) {
+      localStorage.setItem("loggedIn", "true");
+      if (foundUser.role === "supervisor") {
+        navigate("/supervisor");
+      } else {
+        navigate("/clockin");
+      }
+    } else {
+      // Handle invalid credentials
+      alert("Invalid username or password");
+    }
+  };
 
   return (
-    <div style={{ backgroundColor: 'lightblue', minHeight: '100vh' }} className="flex items-center justify-center">
+    <div
+      style={{ backgroundColor: "lightblue", minHeight: "100vh" }}
+      className="flex items-center justify-center"
+    >
       <div className="flex flex-col space-y-4 items-center">
-  
-         {/* Header */}
-         <h1 className="text-2xl font-bold">Log In</h1>
-  
-        {/* Email Input */}
-        <Input onChange={handleUserNameChange}
+        {/* Header */}
+        <h1 className="text-2xl font-bold">Log In</h1>
+
+        {/* Username Input */}
+        <Input
+          onChange={handleUserNameChange}
           isRequired
-          type="username"
+          type="text"
           label="Username"
-          defaultValue="client@gmail.com"
+          value={username}
           className="max-w-xs"
         />
-  
+
         {/* Password Input */}
-        <Input onChange={handlePasswordChange}
+        <Input
+          onChange={handlePasswordChange}
+          isRequired
           label="Password"
           variant="bordered"
-          placeholder="Enter your password"
           endContent={
             <button
               className="focus:outline-none"
@@ -61,22 +75,31 @@ export default function Login() {
               aria-label="toggle password visibility"
             >
               {isVisible ? (
-                <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-              ) : (
                 <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+              ) : (
+                <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
               )}
             </button>
           }
           type={isVisible ? "text" : "password"}
+          value={password}
           className="max-w-xs"
         />
-  
+
         {/* Submit Button */}
-        <Button color="primary" onClick = {handleSubmit} size="md">
+        <Button color="primary" onClick={handleSubmit} size="md">
           Log In
+        </Button>
+
+        {/* Register Link */}
+        <Button
+          onClick={() => navigate("/register")}
+          className="mt-2"
+        >
+          Don't have an account? Register
         </Button>
       </div>
     </div>
   );
-  
 }
+
