@@ -13,7 +13,7 @@ const mapKey = import.meta.env.VITE_MAP_API_KEY;
 
 const mapContainerStyle = {
   width: "600px",
-  height: "400px",
+  height: "550px",
 };
 
 const center = {

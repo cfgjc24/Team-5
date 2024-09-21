@@ -33,12 +33,12 @@ export default function Supervisor() {
   }, [lastNotificationId]);
 
   return (
-    <div className="flex flex-row h-[425px]">
+    <div className="flex flex-row h-[600px]">
       <div className="w-1/2 h-full mx-4">
         <Map />
       </div>
 
-      <div className="w-full h-1/2 mb-2">
+      <div className="w-full h-full mb-2">
         <Sidebar />
       </div>
 
@@ -47,4 +47,3 @@ export default function Supervisor() {
     </div>
   );
 }
-

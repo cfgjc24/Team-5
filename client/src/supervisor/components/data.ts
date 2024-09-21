@@ -38,7 +38,7 @@ const columns = [
       status: "Working",
       avatar: "https://i.pravatar.cc/150?u=a048581f4e29026701d",
       number: "245-555-8971"
-    }
+    },
     
   ];
   
