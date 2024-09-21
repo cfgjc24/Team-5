@@ -20,14 +20,14 @@ function Clock() {
     }, [pressed, navigate, timestamp]);
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-            <h1 className="text-4xl font-bold text-center text-blue-600 mb-4">
+        <div className="flex flex-col items-center justify-center h-screen">
+            <h1 className="text-4xl font-bold text-center mb-4">
                 Welcome! Please Clock In
             </h1>
-            <Button color="primary" variant="shadow" onClick={handleClockIn}>
+            <Button variant="shadow" onClick={handleClockIn}>
                 Clock In
             </Button>
-            {pressed && <p className="mt-2 text-lg text-green-600">Clocked In at: {timestamp}</p>}
+            {pressed && <p className="mt-2 text-lg">Clocked In at: {timestamp}</p>}
         </div>
     );
 }

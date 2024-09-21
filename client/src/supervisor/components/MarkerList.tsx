@@ -13,7 +13,7 @@ export default function MarkerList() {
         })
         
     },[])
-
+    
 
     return <>
         <div className = "markerList" >

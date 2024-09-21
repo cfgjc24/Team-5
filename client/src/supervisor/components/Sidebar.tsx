@@ -4,17 +4,19 @@ import {EditIcon} from "./EditIcon";
 import {DeleteIcon} from "./DeleteIcon";
 import {EyeIcon} from "./EyeIcon";
 import {columns, users} from "./data";
+import { useState, useEffect } from "react";
+import { getMarkers } from "../../config/config.tsx";
 
 const statusColorMap: Record <string, string> ={
-  "active": "success",
-  "overtime": "danger",
-  "possible danger": "warning",
+  "Working": "success",
+  "Overtime": "primary",
+  "Emergency": "warning",
+  "SOS": "danger",
 };
 
 export default function App() {
-  const renderCell = React.useCallback((user:any, columnKey:any) => {
+    const renderCell = React.useCallback((user:any, columnKey:any) => {
     const cellValue = user[columnKey];
-    
 
     switch (columnKey) {
       case "name":
@@ -40,10 +42,11 @@ export default function App() {
             {cellValue}
           </Chip>
         );
+    
       case "actions":
         return (
           <div className="relative flex items-center gap-2">
-            <Tooltip content="Details">
+            <Tooltip content="911-119-1919">
               <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
                 <EyeIcon />
               </span>
@@ -65,6 +68,16 @@ export default function App() {
     }
   }, []);
 
+  const [markerList, setMarkerList] = useState([{}]);
+
+  useEffect(() => {
+    getMarkers().then((value: any[]) => {
+      // console.log(value) ;
+      setMarkerList(value);
+    });
+  }, []);
+    
+
   return (
   <Table aria-label="Example table with custom cells">
       <TableHeader columns={columns}>
@@ -74,9 +87,9 @@ export default function App() {
           </TableColumn>
         )}
       </TableHeader>
-      <TableBody items={users}>
+      <TableBody items={markerList}>
         {(item) => (
-          <TableRow key={item.id}>
+          <TableRow key="{item.name}">
             {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
           </TableRow>
         )}

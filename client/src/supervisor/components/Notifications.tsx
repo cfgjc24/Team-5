@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 
 interface Notification {
   id: number;
+  name: string;
   status: string;
   comment: string;
 }
@@ -57,38 +58,44 @@ export default function Notifications() {
   };
 
   return (
-    <Table aria-label="Notifications">
-      <TableHeader>
-        <TableColumn>Status</TableColumn>
-        <TableColumn>Comment</TableColumn>
-        <TableColumn>Action</TableColumn>
-      </TableHeader>
-      <TableBody>
-        {notifications.length === 0 ? (
-          <TableRow key="no-data">
-            <TableCell className="hidden"> </TableCell>
-            <TableCell aria-colspan={3} colSpan={3} className="text-center">No notifications yet</TableCell>
-            <TableCell className="hidden"> </TableCell>
-          </TableRow>
-        ) : (
-          notifications.map((notification) => (
-            <TableRow key={notification.id}>
-              <TableCell>{notification.status}</TableCell>
-              <TableCell>{notification.comment}</TableCell>
-              <TableCell>
-                <Button
-                  color="danger"
-                  size="sm"
-                  onClick={() => handleDelete(notification.id)}
-                >
-                  Delete
-                </Button>
-              </TableCell>
+    <div
+      className="h-full overflow-y-auto w-full bg-zinc-800">
+      <Table aria-label="Notifications" removeWrapper isStriped className="w-full h-full table-fixed">
+        <TableHeader>
+          <TableColumn className="text-center">Name</TableColumn>
+          <TableColumn className="text-center">Status</TableColumn>
+          <TableColumn className="text-center">Comment</TableColumn>
+          <TableColumn className="text-center whitespace-nowrap"></TableColumn>
+        </TableHeader>
+        <TableBody>
+          {notifications.length === 0 ? (
+            <TableRow key="no-data">
+              <TableCell className="hidden"> </TableCell>
+              <TableCell className="hidden"> </TableCell>
+              <TableCell aria-colspan={4} colSpan={4} className="text-center">No notifications yet</TableCell>
+              <TableCell className="hidden"> </TableCell>
             </TableRow>
-          ))
-        )}
-      </TableBody>
-    </Table>
+          ) : (
+            notifications.map((notification) => (
+              <TableRow key={notification.id}>
+                <TableCell>{notification.name}</TableCell>
+                <TableCell>{notification.status}</TableCell>
+                <TableCell>{notification.comment}</TableCell>
+                <TableCell>
+                  <Button
+                    color="danger"
+                    size="sm"
+                    onClick={() => handleDelete(notification.id)}
+                  >
+                    Delete
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))
+          )}
+        </TableBody>
+      </Table>
+    </div>
   );
 }
 

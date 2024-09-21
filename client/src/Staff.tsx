@@ -1,25 +1,25 @@
 import { useState } from 'react';
-import {Button} from "@nextui-org/react";
-
-
+import { Button, Popover, PopoverTrigger, PopoverContent } from "@nextui-org/react";
+import { useNavigate } from 'react-router-dom';
+import { FiInfo } from "react-icons/fi";
 
 function Staff() {
   const [formData, setFormData] = useState({
+    name: "Liam Wilson",
     status: "good",
     comment: "",
-  })
-  const [checkOutTime, setCheckOutTime] = useState<Date | null>(null); // State to store the timestamp
+  });
+  const [checkOutTime, setCheckOutTime] = useState<Date | null>(null);
+  const navigate = useNavigate();
 
   const handleCheckOut = () => {
-    const currentTime = new Date(); // Get the current timestamp
+    const currentTime = new Date();
     setCheckOutTime(currentTime);
     console.log(`Checked out at: ${currentTime}`);
-    // Optionally, send this data to your backend or handle it as needed
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData)
 
     try {
       const response = await fetch('http://localhost:5000/notifications', {
@@ -53,59 +53,103 @@ function Staff() {
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
-    }
-    ));
-  }
-  
+    }));
+  };
+
+  const handleClockOut = () => {
+    navigate('/clockin');
+  };
+
   return (
     <>
-    <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center h-screen">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-x-11 md:gap-y-8">
-        <Button
-          color="success"
-          className="w-80 md:w-70"
-          onClick={() => handleButtonClick('good')}
-        >
-          Great
+      <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center h-screen">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-x-11 md:gap-y-8">
+          <div className="flex items-center">
+            <Button color="success" className="w-80 md:w-70" onClick={() => handleButtonClick('good')}>
+              Great
+            </Button>
+            <Popover>
+              <PopoverTrigger>
+                <Button isIconOnly className="mx-2">
+                  <FiInfo size="20" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <p>All is well, nothing to report.</p>
+              </PopoverContent>
+            </Popover>
+          </div>
+
+          <div className="flex items-center">
+            <Button color="primary" className="w-80 md:w-70" onClick={() => handleButtonClick('extend')}>
+              Extend Time
+            </Button>
+            <Popover>
+              <PopoverTrigger>
+                <Button isIconOnly className="mx-2">
+                  <FiInfo size="20" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <p>Need more time to complete my visit.</p>
+              </PopoverContent>
+            </Popover>
+          </div>
+
+          <div className="flex items-center">
+            <Button color="warning" className="w-80 md:w-70" onClick={() => handleButtonClick('emergency')}>
+              Emergency
+            </Button>
+            <Popover>
+              <PopoverTrigger>
+                <Button isIconOnly className="mx-2">
+                  <FiInfo size="20" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <p>Handling an emergency situation, assistance may be required.</p>
+              </PopoverContent>
+            </Popover>
+          </div>
+
+          <div className="flex items-center">
+            <Button color="danger" className="w-80 md:w-70" onClick={() => handleButtonClick('sos')}>
+              SOS
+            </Button>
+            <Popover>
+              <PopoverTrigger>
+                <Button isIconOnly className="mx-2">
+                  <FiInfo size="20" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <p>Call 911 for me or request immediate help.</p>
+              </PopoverContent>
+            </Popover>
+          </div>
+        </div>
+
+        <input
+          type="text"
+          id="comment"
+          name="comment"
+          value={formData.comment}
+          onChange={handleInputChange}
+          className="mt-10 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+        />
+        <input
+          type="submit"
+          value="Submit"
+          className="mt-8 p-2 rounded-md shadow-md transition duration-200"
+        />
+
+        <Button radius="full" className="mt-6" onClick={handleClockOut}>
+          Clock Out
         </Button>
-        <Button
-          color="primary"
-          className="w-80 md:w-70"
-          onClick={() => handleButtonClick('extend')}
-        >
-          Extend Time
-        </Button>
-        <Button
-          color="warning"
-          className="w-80 md:w-70"
-          onClick={() => handleButtonClick('emergency')}
-        >
-          Emergency
-        </Button>
-        <Button
-          color="danger"
-          className="w-80 md:w-70"
-          onClick={() => handleButtonClick('sos')}
-        >
-          SOS
-        </Button>
-      </div>
-      <input
-        type="text"
-        id="comment"
-        name="comment"
-        value={formData.comment}
-        onChange={handleInputChange}
-        className="mt-4"
-      />
-      {/* Submit Button */}
-      <input type="submit" value="Submit" className="mt-2" />
-      <Button radius="full" className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg mt-4" onClick={handleCheckOut}>
-         Check Out
-      </Button>
-    </form>
+      </form>
     </>
-  )
+  );
 }
 
-export default Staff
+export default Staff;
+
