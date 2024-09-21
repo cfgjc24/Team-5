@@ -41,3 +41,4 @@ jspm_packages
 public/
 
 .env
+client\package-lock.json
