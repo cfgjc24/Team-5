@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@nextui-org/react": "^2.4.8",
     "tsx": "^4.19.1"
   }
 }
