@@ -20,8 +20,8 @@ export default function App() {
     switch (columnKey) {
       case "name":
         return (
-          <User
-            avatarProps={{ radius: "full", src: user.avatar }}
+          <User style={{ opacity: 1 }}
+            avatarProps={{ radius: "full", src: user.avatar, isLoading: false}}
             description={user.email}
             name={cellValue}
           >
