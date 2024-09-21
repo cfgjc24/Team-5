@@ -25,9 +25,9 @@ function App() {
           <Route path="/supervisor" element={<Supervisor />} />          
           <Route path="/sidebar" element={<Sidebar />} />
           <Route path="/notifications" element={<Notifications />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
-    <NextUIProvider><Login/></NextUIProvider>
     </>
   );
 }
