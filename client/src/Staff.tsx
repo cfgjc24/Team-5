@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import {Button} from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
+import { useNavigate } from 'react-router-dom'; 
 
 
 
@@ -9,12 +10,12 @@ function Staff() {
     comment: "",
   })
   const [checkOutTime, setCheckOutTime] = useState<Date | null>(null); // State to store the timestamp
-
+  const navigate = useNavigate();
   const handleCheckOut = () => {
     const currentTime = new Date(); 
     setCheckOutTime(currentTime);
     console.log(`Checked out at: ${currentTime}`);
-    // Optionally, send this data to your backend or handle it as needed
+    //send to backend?
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -55,8 +56,12 @@ function Staff() {
       [name]: value,
     }
     ));
-  }
-    return (
+  };
+
+    const handleClockOut = () => {
+      navigate('/clockin'); 
+    };
+  return (
         <>
             <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center h-screen">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-x-11 md:gap-y-8">
@@ -74,21 +79,23 @@ function Staff() {
                     </Button>
                 </div>
                 <input
-                    type="text"
-                    id="comment"
-                    name="comment"
-                    value={formData.comment}
-                    onChange={handleInputChange}
-                    className="mt-4"
-                />
-                {/* Submit Button */}
-                <input type="submit" value="Submit" className="mt-2" />
-                <Button radius="full" className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg mt-4" onClick={handleCheckOut}>
-                    Clock Out
+                type="text"
+                id="comment"
+                name="comment"
+                value={formData.comment}
+                onChange={handleInputChange}
+                className="mt-10 w-full max-w-md p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+              />
+              <input
+                type="submit"
+                value="Submit"
+                className="mt-8 bg-black text-white p-2 rounded-md shadow-md hover:bg-blue-600 transition duration-200"
+              />
+                <Button radius="full" className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg mt-6" onClick={handleClockOut}>
+                  Clock Out                    
                 </Button>
             </form>
         </>
     );
 }
-
 export default Staff;
