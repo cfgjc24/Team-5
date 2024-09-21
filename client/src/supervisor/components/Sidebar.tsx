@@ -6,9 +6,9 @@ import {EyeIcon} from "./EyeIcon";
 import {columns, users} from "./data";
 
 const statusColorMap: Record <string, string> ={
-  "active": "success",
-  "overtime": "danger",
-  "possible danger": "warning",
+  "Working": "success",
+  "Overtime": "warning",
+  "Emergency": "danger",
 };
 
 export default function App() {

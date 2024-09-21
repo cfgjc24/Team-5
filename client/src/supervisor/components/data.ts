@@ -10,8 +10,7 @@ const columns = [
       id: 1,
       name: "Liam Wilson",
       client: "John Doe",
-
-      status: "working",
+      status: "Emergency",
       age: "29",
       avatar: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
       
@@ -20,7 +19,7 @@ const columns = [
       id: 2,
       name: "Zoey Lang",
       client: "Sarah Smith",
-      status: "paused",
+      status: "Overtime",
       age: "25",
       avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
       
@@ -29,7 +28,7 @@ const columns = [
       id: 3,
       name: "Jane Fisher",
       client: "William Johnson",
-      status: "active",
+      status: "Working",
       age: "22",
       avatar: "https://i.pravatar.cc/150?u=a04258114e29026702d",
     },
