@@ -7,7 +7,7 @@ function Clock() {
 
     useEffect(() => {
         if (pressed) {
-            navigate('/staff'); // Adjust the path according to your routing setup
+            navigate('/staff');
         }
     }, [pressed, navigate]);
 
