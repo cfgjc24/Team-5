@@ -1,4 +1,9 @@
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  useLoadScript,
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api";
 import { useState, useEffect } from "react";
 import { getMarkers } from "../../config/config.tsx";
 
@@ -15,13 +20,9 @@ const center = {
   lng: -74.050552,
 };
 
-const locations = [
-  { lat: 40.719074, lng: -74.050552 },
-  { lat: 38.9, lng: -77.04 },
-];
-
 export default function Map() {
   const [markerList, setMarkerList] = useState([{}]);
+  const [selectedMarker, setSelectedMarker] = useState<any | null>(null);
 
   useEffect(() => {
     getMarkers().then((value: any[]) => {
@@ -51,8 +52,37 @@ export default function Map() {
               lat: marker.coordinates.latitude,
               lng: marker.coordinates.longitude,
             }}
+            onClick={() => setSelectedMarker(marker)}
           />
         )
+      )}
+      {selectedMarker && (
+        <InfoWindow
+          position={{
+            lat: selectedMarker.coordinates.latitude,
+            lng: selectedMarker.coordinates.longitude,
+          }}
+          onCloseClick={() => setSelectedMarker(null)} // Close info window
+        >
+          <div>
+            <p>
+              <strong>Name:</strong> {selectedMarker.name}
+            </p>
+            <p>
+              <strong>Client:</strong> {selectedMarker.clientName}
+            </p>
+            <p>
+              <strong>Time:</strong>
+              {new Date(
+                selectedMarker.time.seconds * 1000
+              ).toLocaleTimeString()}
+            </p>
+            <p>
+              <strong>Location:</strong> {selectedMarker.coordinates.latitude},
+              {selectedMarker.coordinates.longitude}
+            </p>
+          </div>
+        </InfoWindow>
       )}
     </GoogleMap>
   );
