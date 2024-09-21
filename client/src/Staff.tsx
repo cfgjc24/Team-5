@@ -70,8 +70,8 @@ function Staff() {
             </Button>
             <Popover>
               <PopoverTrigger>
-                <Button auto light className="ml-2">
-                  <FiInfo />
+                <Button isIconOnly className="mx-2">
+                  <FiInfo size="20" />
                 </Button>
               </PopoverTrigger>
               <PopoverContent>
@@ -86,8 +86,8 @@ function Staff() {
             </Button>
             <Popover>
               <PopoverTrigger>
-                <Button auto light className="ml-2">
-                  <FiInfo />
+                <Button isIconOnly className="mx-2">
+                  <FiInfo size="20" />
                 </Button>
               </PopoverTrigger>
               <PopoverContent>
@@ -102,8 +102,8 @@ function Staff() {
             </Button>
             <Popover>
               <PopoverTrigger>
-                <Button auto light className="ml-2">
-                  <FiInfo />
+                <Button isIconOnly className="mx-2">
+                  <FiInfo size="20" />
                 </Button>
               </PopoverTrigger>
               <PopoverContent>
@@ -118,8 +118,8 @@ function Staff() {
             </Button>
             <Popover>
               <PopoverTrigger>
-                <Button auto light className="ml-2">
-                  <FiInfo />
+                <Button isIconOnly className="mx-2">
+                  <FiInfo size="20" />
                 </Button>
               </PopoverTrigger>
               <PopoverContent>
@@ -135,15 +135,15 @@ function Staff() {
           name="comment"
           value={formData.comment}
           onChange={handleInputChange}
-          className="mt-10 w-full max-w-md p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+          className="mt-10 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
         />
         <input
           type="submit"
           value="Submit"
-          className="mt-8 bg-black text-white p-2 rounded-md shadow-md hover:bg-blue-600 transition duration-200"
+          className="mt-8 p-2 rounded-md shadow-md transition duration-200"
         />
 
-        <Button radius="full" className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg mt-6" onClick={handleClockOut}>
+        <Button radius="full" className="mt-6" onClick={handleClockOut}>
           Clock Out
         </Button>
       </form>
