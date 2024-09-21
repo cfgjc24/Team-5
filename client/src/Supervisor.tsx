@@ -5,8 +5,7 @@ import Notifications from "./supervisor/components/Notifications";
 export default function Supervisor() {
   return (
     <>
-      <Map /> <MarkerList />
-      <Notifications />
+      <Map /> <Notifications />
     </>
   );
 }
