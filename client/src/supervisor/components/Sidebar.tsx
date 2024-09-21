@@ -21,7 +21,7 @@ export default function App() {
       case "name":
         return (
           <User style={{ opacity: 1 }}
-            avatarProps={{ radius: "full", src: user.avatar, isLoading: false}}
+            avatarProps={{ radius: "full", src: user.avatar, isLoading: false }}
             description={user.email}
             name={cellValue}
           >
@@ -30,9 +30,8 @@ export default function App() {
         );
       case "clientName":
         return (
-          <div className="flex flex-col">
-            <p className="text-bold text-sm capitalize">{cellValue}</p>
-            <p className="text-bold text-sm capitalize text-default-400">{user.team}</p>
+          <div className="flex flex-col w-full">
+            <p className="text-bold text-sm capitalize mb-0">{cellValue}</p>
           </div>
         );
       case "status":
@@ -90,7 +89,7 @@ export default function App() {
           )}
         </TableBody>
       </Table>
-      </div>
+    </div>
   );
 }
 
