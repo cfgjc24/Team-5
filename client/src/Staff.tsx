@@ -1,17 +1,28 @@
 import { useState } from 'react';
+import {Button} from "@nextui-org/react";
+
+
 
 function Staff() {
   const [formData, setFormData] = useState({
     status: "good",
     comment: "",
   })
+  const [checkOutTime, setCheckOutTime] = useState<Date | null>(null); // State to store the timestamp
+
+  const handleCheckOut = () => {
+    const currentTime = new Date(); // Get the current timestamp
+    setCheckOutTime(currentTime);
+    console.log(`Checked out at: ${currentTime}`);
+    // Optionally, send this data to your backend or handle it as needed
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(formData)
 
     try {
-      const response = await fetch('/supervisor', {
+      const response = await fetch('http://localhost:5000/notifications', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -45,22 +56,56 @@ function Staff() {
     }
     ));
   }
-
+  
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <button type="button" onClick={() => handleButtonClick('good')}>Great</button>
-          <button type="button" onClick={() => handleButtonClick('extend')}>Extend Time</button>
-          <button type="button" onClick={() => handleButtonClick('emergency')}>Emergency</button>
-          <button type="button" onClick={() => handleButtonClick('sos')}>SOS</button>
-        </div>
-        <input type="text" id="comment" name="comment" value={formData.comment} onChange={handleInputChange}></input>
-        <input type="submit" value="Submit"></input>
-      </form>
+    <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center h-screen">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-x-11 md:gap-y-8">
+        <Button
+          color="success"
+          className="w-80 md:w-70"
+          onClick={() => handleButtonClick('good')}
+        >
+          Great
+        </Button>
+        <Button
+          color="primary"
+          className="w-80 md:w-70"
+          onClick={() => handleButtonClick('extend')}
+        >
+          Extend Time
+        </Button>
+        <Button
+          color="warning"
+          className="w-80 md:w-70"
+          onClick={() => handleButtonClick('emergency')}
+        >
+          Emergency
+        </Button>
+        <Button
+          color="danger"
+          className="w-80 md:w-70"
+          onClick={() => handleButtonClick('sos')}
+        >
+          SOS
+        </Button>
+      </div>
+      <input
+        type="text"
+        id="comment"
+        name="comment"
+        value={formData.comment}
+        onChange={handleInputChange}
+        className="mt-4"
+      />
+      {/* Submit Button */}
+      <input type="submit" value="Submit" className="mt-2" />
+      <Button radius="full" className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg mt-4" onClick={handleCheckOut}>
+         Check Out
+      </Button>
+    </form>
     </>
   )
 }
 
 export default Staff
-
