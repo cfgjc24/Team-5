@@ -1,12 +1,3 @@
-import {
-  Table,
-  TableHeader,
-  TableBody,
-  TableColumn,
-  TableRow,
-  TableCell,
-  Button,
-} from "@nextui-org/react";
 import { useState, useEffect } from "react";
 
 interface Notification {
@@ -57,43 +48,51 @@ export default function Notifications() {
     }
   };
 
+  const getAlertClass = (status: string): string => {
+    switch (status) {
+      case "good":
+        return "alert-success"; // Green
+      case "extend":
+        return "alert-primary"; // Blue
+      case "emergency":
+        return "alert-warning"; // Orange
+      case "sos":
+        return "alert-danger"; // Red
+      default:
+        return "alert-secondary"; // Fallback
+    }
+  };
+
+  const filteredNotifications = notifications.filter(
+    (notification) => notification.status === "emergency" || notification.status === "sos"
+  );
+
+  if (filteredNotifications.length === 0) {
+    return null;
+  }
+
   return (
-    <div className="h-full overflow-y-auto w-full bg-zinc-800">
-      <Table aria-label="Notifications" removeWrapper isStriped className="w-full h-full table-fixed">
-        <TableHeader>
-          <TableColumn className="text-center">Name</TableColumn>
-          <TableColumn className="text-center">Status</TableColumn>
-          <TableColumn className="text-center">Comment</TableColumn>
-          <TableColumn className="text-center whitespace-nowrap"></TableColumn>
-        </TableHeader>
-        <TableBody>
-          {notifications.length === 0 ? (
-            <TableRow key="no-data">
-              <TableCell className="hidden"> </TableCell>
-              <TableCell className="hidden"> </TableCell>
-              <TableCell aria-colspan={4} colSpan={4} className="text-center">No notifications yet</TableCell>
-              <TableCell className="hidden"> </TableCell>
-            </TableRow>
-          ) : (
-            notifications.map((notification) => (
-              <TableRow key={notification.id}>
-                <TableCell>{notification.name}</TableCell>
-                <TableCell>{notification.status}</TableCell>
-                <TableCell>{notification.comment}</TableCell>
-                <TableCell>
-                  <Button
-                    color="danger"
-                    size="sm"
-                    onClick={() => handleDelete(notification.id)}
-                  >
-                    Delete
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))
-          )}
-        </TableBody>
-      </Table>
+    <div
+      className="position-fixed top-0 right-0 p-4"
+      style={{ zIndex: 1050 }}
+    >
+      {filteredNotifications.map((filteredNotification) => (
+        <div
+          key={filteredNotification.id}
+          className={`alert ${getAlertClass(filteredNotification.status)} alert-dismissible fade show`}
+          role="alert"
+        >
+          <strong>[{filteredNotification.status.toUpperCase()}] </strong> {filteredNotification.name}
+          {filteredNotification.comment ? ": " : ""}
+          {filteredNotification.comment}
+          <button
+            type="button"
+            className="btn-close"
+            aria-label="Close"
+            onClick={() => handleDelete(filteredNotification.id)} // Delete on close
+          ></button>
+        </div>
+      ))}
     </div>
   );
 }

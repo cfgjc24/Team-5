@@ -3,6 +3,7 @@ import { Input, Button, RadioGroup, Radio } from "@nextui-org/react";
 import { EyeFilledIcon } from "./EyeFilledIcon";
 import { EyeSlashFilledIcon } from "./EyeSlashFilledIcon";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/logo.png"; 
 
 export default function Register() {
   const [isVisible, setIsVisible] = useState(false);
@@ -56,10 +57,12 @@ export default function Register() {
   };
 
   return (
-    <div
-      className="flex items-center justify-center h-screen"
-    > <div className="flex flex-col space-y-4 items-center">
-        <h1 className="text-2xl font-bold">Register</h1>
+    <div className="flex items-center justify-center h-screen">
+      <div className="flex flex-col space-y-4 items-center">
+        <div className="flex items-center space-x-2">
+          <img src={logo} alt="Logo" className="h-10 w-10" />
+          <h1 className="text-2xl font-bold">Register</h1>
+        </div>
 
         <Input
           name="name"
@@ -154,4 +157,3 @@ export default function Register() {
     </div>
   );
 }
-
