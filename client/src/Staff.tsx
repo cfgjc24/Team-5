@@ -56,12 +56,17 @@ function Staff() {
       [name]: value,
     }
     ));
+<<<<<<< HEAD
   };
 
     const handleClockOut = () => {
       navigate('/clockin'); 
     };
   return (
+=======
+  }
+    return (
+>>>>>>> e958bae (Added conditional rendering and connected database to sidebar)
         <>
             <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center h-screen">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-x-11 md:gap-y-8">

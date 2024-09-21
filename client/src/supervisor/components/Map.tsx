@@ -47,20 +47,21 @@ export default function Map() {
   if (!isLoaded) return <div>Loading...</div>;
 
   return (
-    <div>
+    <>
       <Slider onChange = {updateSlider} value = {selectedTime} maxValue = {1439}>
       </Slider>
-      <h3>{selectedTime / 60 < 12 ? <>{selectedHour}:{selectedMin} AM</> : <>{selectedHour}:{selectedMin} PM</>}</h3>
+      <h3 className="text-center">{selectedTime / 60 < 12 ? <>{selectedHour}:{selectedMin} AM</> : <>{selectedHour}:{selectedMin} PM</>}</h3>
 
       <GoogleMap mapContainerStyle={mapContainerStyle} zoom={10} center={center}>
-        <Marker position={center} />
+        <Marker key="a" position={center} />
         {markerList.map((marker) =>
-          !("active" in marker) ? (
+          (!("active" in marker) || (Boolean(marker.active) == false)) ? (
             <></>
           ) : (
             // <Marker key="a" position={marker} />
+
             <Marker
-              key="a"
+              key={marker.name}
               position={{
                 lat: marker.coordinates.latitude,
                 lng: marker.coordinates.longitude,
@@ -98,6 +99,10 @@ export default function Map() {
           </InfoWindow>
         )}
       </GoogleMap>
-    </div>
+    </>
   );
+
+
+
+  
 }

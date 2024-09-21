@@ -4,6 +4,8 @@ import {EditIcon} from "./EditIcon";
 import {DeleteIcon} from "./DeleteIcon";
 import {EyeIcon} from "./EyeIcon";
 import {columns, users} from "./data";
+import { useState, useEffect } from "react";
+import { getMarkers } from "../../config/config.tsx";
 
 const statusColorMap: Record <string, string> ={
   "Working": "success",
@@ -13,9 +15,8 @@ const statusColorMap: Record <string, string> ={
 };
 
 export default function App() {
-  const renderCell = React.useCallback((user:any, columnKey:any) => {
+    const renderCell = React.useCallback((user:any, columnKey:any) => {
     const cellValue = user[columnKey];
-    
 
     switch (columnKey) {
       case "name":
@@ -67,6 +68,16 @@ export default function App() {
     }
   }, []);
 
+  const [markerList, setMarkerList] = useState([{}]);
+
+  useEffect(() => {
+    getMarkers().then((value: any[]) => {
+      // console.log(value) ;
+      setMarkerList(value);
+    });
+  }, []);
+    
+
   return (
   <Table aria-label="Example table with custom cells">
       <TableHeader columns={columns}>
@@ -76,9 +87,9 @@ export default function App() {
           </TableColumn>
         )}
       </TableHeader>
-      <TableBody items={users}>
+      <TableBody items={markerList}>
         {(item) => (
-          <TableRow key={item.id}>
+          <TableRow key="{item.name}">
             {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
           </TableRow>
         )}
