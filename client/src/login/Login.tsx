@@ -14,9 +14,9 @@ export default function Login() {
       {/* Email Input */}
       <Input
         isRequired
-        type="email"
-        label="Email"
-        defaultValue="junior@nextui.org"
+        type="username"
+        label="Username"
+        defaultValue="client@lodestar.org"
         className="max-w-xs"
       />
 
