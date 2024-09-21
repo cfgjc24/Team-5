@@ -80,8 +80,8 @@ export default function Register() {
           </label>
           <RadioGroup
             orientation="horizontal"
-            value={formValues.role}
-            onChange={handleRoleChange}
+            defaultValue="staff"
+            onValueChange={handleRoleChange}
             className="mt-2"
           >
             <Radio value="staff">Staff</Radio>
