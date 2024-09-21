@@ -30,7 +30,6 @@ export default function Login() {
     );
 
     if (foundUser) {
-      localStorage.setItem("loggedIn", "true");
       if (foundUser.role === "supervisor") {
         navigate("/supervisor");
       } else {

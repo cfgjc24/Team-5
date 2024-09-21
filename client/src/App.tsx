@@ -13,24 +13,17 @@ import Register from "./login/Register.tsx";
 import { NextUIProvider } from "@nextui-org/react";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const loggedIn = localStorage.getItem("loggedIn");
-    setIsLoggedIn(loggedIn === "true");
-  }, []);
-
   return (
     <>
       <NextUIProvider>
         <Router>
           <Routes>
-            <Route path="/" element={isLoggedIn ? <Home /> : <Navigate to="/login" />} />
-            <Route path="/staff" element={isLoggedIn ? <Staff /> : <Navigate to="/login" />} />
-            <Route path="/clockin" element={isLoggedIn ? <Clock /> : <Navigate to="/login" />} />
-            <Route path="/supervisor" element={isLoggedIn ? <Supervisor /> : <Navigate to="/login" />} />
-            <Route path="/sidebar" element={isLoggedIn ? <Sidebar /> : <Navigate to="/login" />} />
-            <Route path="/notifications" element={isLoggedIn ? <Notifications /> : <Navigate to="/login" />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/staff" element={<Staff />} />
+            <Route path="/clockin" element={<Clock />} />
+            <Route path="/supervisor" element={<Supervisor />} />
+            <Route path="/sidebar" element={<Sidebar />} />
+            <Route path="/notifications" element={<Notifications />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Routes>
