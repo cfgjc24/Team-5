@@ -29,7 +29,7 @@ export default function App() {
             {user.email}
           </User>
         );
-      case "client":
+      case "clientName":
         return (
           <div className="flex flex-col">
             <p className="text-bold text-sm capitalize">{cellValue}</p>

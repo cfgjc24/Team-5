@@ -1,6 +1,6 @@
 const columns = [
     {name: "NAME", uid: "name"},
-    {name: "CLIENT", uid: "client"},
+    {name: "CLIENT", uid: "clientName"},
     {name: "STATUS", uid: "status"},
     {name: "", uid: "actions"},
   ];
