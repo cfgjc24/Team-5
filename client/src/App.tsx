@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./Home";
 import Staff from "./Staff";
 import Clock from "./Clock";
 import Supervisor from "./Supervisor";
@@ -15,12 +14,12 @@ function App() {
       <NextUIProvider>
         <Router>
           <Routes>
+            <Route path="/" element={<Login />} />
             <Route path="/staff" element={<Staff />} />
             <Route path="/clockin" element={<Clock />} />
             <Route path="/supervisor" element={<Supervisor />} />
             <Route path="/sidebar" element={<Sidebar />} />
             <Route path="/notifications" element={<Notifications />} />
-            <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Routes>
         </Router>

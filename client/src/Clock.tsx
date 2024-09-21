@@ -13,6 +13,10 @@ function Clock() {
         setPressed(true);
     };
 
+    const handleLogOut= () =>{
+        navigate('/');
+    }
+
     useEffect(() => {
         if (pressed) {
             navigate('/staff', { state: { clockInTime: timestamp } });
@@ -28,6 +32,9 @@ function Clock() {
                 Clock In
             </Button>
             {pressed && <p className="mt-2 text-lg">Clocked In at: {timestamp}</p>}
+            <Button variant="shadow" className = "mt-10" onClick={handleLogOut}>
+                Log Out
+            </Button>
         </div>
     );
 }

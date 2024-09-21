@@ -51,7 +51,7 @@ export default function Register() {
       if (formValues.role === "supervisor") {
         navigate("/supervisor");
       } else {
-        navigate("/staff");
+        navigate("/clockin");
       }
     }
   };
