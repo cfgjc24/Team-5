@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './App.css';
 
 export default function Login() {
@@ -18,7 +16,7 @@ export default function Login() {
   return (
     <>
       <div></div>
-      <h1>LoadStar</h1>
+      <h1>LodeStar</h1>
       <div className="card">
         <h3>UserName:</h3>
         <input value={userName} onChange={handleUserNameChange} />
