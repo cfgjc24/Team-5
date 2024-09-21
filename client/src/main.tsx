@@ -5,6 +5,14 @@ import './index.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+<<<<<<< Updated upstream
     <App />
   </StrictMode>,
 )
+=======
+    <NextUIProvider>
+      <App />
+    </NextUIProvider>
+  </StrictMode>
+);
+>>>>>>> Stashed changes

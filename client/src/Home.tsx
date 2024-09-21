@@ -15,7 +15,14 @@ const Home: React.FC<HomeProps> = ({ onClockIn }) => {
         </button>
       </div>
     </>
+<<<<<<< Updated upstream
   );
 };
 
 export default Home;
+=======
+  )
+}
+
+export default Home
+>>>>>>> Stashed changes
