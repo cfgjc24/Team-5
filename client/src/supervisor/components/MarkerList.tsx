@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { db } from "../../config/config.tsx" ;
+import { db } from "../../config/config" ;
 import { getDocs, getDoc, collection, addDoc, deleteDoc, doc, updateDoc } from 'firebase/firestore'
 
 export default function MarkerList() {

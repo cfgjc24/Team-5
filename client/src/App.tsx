@@ -9,14 +9,6 @@ import { NextUIProvider } from "@nextui-org/react";
 function App() {
   return (
     <>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/staff" element={<Staff />} />
-          <Route path="/supervisor" element={<Supervisor />} />
-          <Route path="/sidebar" element={<Sidebar />} />
-        </Routes>
-      </Router>
       <NextUIProvider>
         <Router>
           <Routes>
