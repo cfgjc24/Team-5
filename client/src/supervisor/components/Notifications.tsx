@@ -58,13 +58,14 @@ export default function Notifications() {
   };
 
   return (
-    <div className="h-full overflow-y-auto w-full bg-red-100">
+    <div
+      className="h-full overflow-y-auto w-full bg-zinc-800">
       <Table aria-label="Notifications" removeWrapper isStriped className="w-full h-full table-fixed">
         <TableHeader>
-          <TableColumn>Name</TableColumn>
-          <TableColumn>Status</TableColumn>
-          <TableColumn>Comment</TableColumn>
-          <TableColumn>Action</TableColumn>
+          <TableColumn className="text-center">Name</TableColumn>
+          <TableColumn className="text-center">Status</TableColumn>
+          <TableColumn className="text-center">Comment</TableColumn>
+          <TableColumn className="text-center whitespace-nowrap"></TableColumn>
         </TableHeader>
         <TableBody>
           {notifications.length === 0 ? (

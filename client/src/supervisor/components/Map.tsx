@@ -50,7 +50,7 @@ export default function Map() {
     <>
       <Slider onChange = {updateSlider} value = {selectedTime} maxValue = {1439}>
       </Slider>
-      <h3 className="text-center">{selectedTime / 60 < 12 ? <>{selectedHour}:{selectedMin} AM</> : <>{selectedHour}:{selectedMin} PM</>}</h3>
+      <h3 className="text-center bg-zinc-800">{selectedTime / 60 < 12 ? <>{selectedHour}:{selectedMin} AM</> : <>{selectedHour}:{selectedMin} PM</>}</h3>
 
       <GoogleMap mapContainerStyle={mapContainerStyle} zoom={10} center={center}>
         <Marker key="a" position={center} />

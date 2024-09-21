@@ -1,13 +1,10 @@
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import Staff from "./Staff";
 import Clock from "./Clock";
 import Supervisor from "./Supervisor";
 import Sidebar from "./supervisor/components/Sidebar";
 import Notifications from "./supervisor/components/Notifications";
-import "./App.css";
 import Login from "./login/Login.tsx";
 import Register from "./login/Register.tsx";
 import { NextUIProvider } from "@nextui-org/react";
