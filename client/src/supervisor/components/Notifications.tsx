@@ -58,8 +58,7 @@ export default function Notifications() {
   };
 
   return (
-    <div
-      className="h-full overflow-y-auto w-full bg-zinc-800">
+    <div className="h-full overflow-y-auto w-full bg-zinc-800">
       <Table aria-label="Notifications" removeWrapper isStriped className="w-full h-full table-fixed">
         <TableHeader>
           <TableColumn className="text-center">Name</TableColumn>

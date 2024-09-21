@@ -22,7 +22,7 @@ function Clock() {
     return (
         <div className="flex flex-col items-center justify-center h-screen">
             <h1 className="text-4xl font-bold text-center mb-4">
-                Welcome! Please Clock In
+                Welcome!<br/>Please Clock In
             </h1>
             <Button variant="shadow" onClick={handleClockIn}>
                 Clock In

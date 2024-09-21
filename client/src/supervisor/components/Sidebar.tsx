@@ -1,13 +1,13 @@
 import React from "react";
-import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, User, Chip, Tooltip, getKeyValue} from "@nextui-org/react";
-import {EditIcon} from "./EditIcon";
-import {DeleteIcon} from "./DeleteIcon";
-import {EyeIcon} from "./EyeIcon";
-import {columns, users} from "./data";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, User, Chip, Tooltip, getKeyValue } from "@nextui-org/react";
+import { EditIcon } from "./EditIcon";
+import { DeleteIcon } from "./DeleteIcon";
+import { EyeIcon } from "./EyeIcon";
+import { columns, users } from "./data";
 import { useState, useEffect } from "react";
 import { getMarkers } from "../../config/config.tsx";
 
-const statusColorMap: Record <string, string> ={
+const statusColorMap: Record<string, string> = {
   "Working": "success",
   "Overtime": "primary",
   "Emergency": "warning",
@@ -15,14 +15,14 @@ const statusColorMap: Record <string, string> ={
 };
 
 export default function App() {
-    const renderCell = React.useCallback((user:any, columnKey:any) => {
+  const renderCell = React.useCallback((user: any, columnKey: any) => {
     const cellValue = user[columnKey];
 
     switch (columnKey) {
       case "name":
         return (
           <User
-            avatarProps={{radius: "full", src: user.avatar}}
+            avatarProps={{ radius: "full", src: user.avatar }}
             description={user.email}
             name={cellValue}
           >
@@ -42,7 +42,7 @@ export default function App() {
             {cellValue}
           </Chip>
         );
-    
+
       case "actions":
         return (
           <div className="relative flex items-center gap-2">
@@ -76,25 +76,27 @@ export default function App() {
       setMarkerList(value);
     });
   }, []);
-    
+
 
   return (
-  <Table aria-label="Example table with custom cells">
-      <TableHeader columns={columns}>
-        {(column) => (
-          <TableColumn key={column.uid} align={column.uid === "actions" ? "center" : "start"}>
-            {column.name}
-          </TableColumn>
-        )}
-      </TableHeader>
-      <TableBody items={markerList}>
-        {(item) => (
-          <TableRow key="{item.name}">
-            {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
-          </TableRow>
-        )}
-      </TableBody>
-    </Table>
+    <div className="h-full overflow-y-auto w-full bg-zinc-800">
+      <Table aria-label="Example table with custom cells" className="w-full h-full table-fixed">
+        <TableHeader columns={columns}>
+          {(column) => (
+            <TableColumn key={column.uid} align={column.uid === "actions" ? "center" : "start"}>
+              {column.name}
+            </TableColumn>
+          )}
+        </TableHeader>
+        <TableBody items={markerList}>
+          {(item) => (
+            <TableRow key="{item.name}">
+              {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
+      </div>
   );
 }
 
