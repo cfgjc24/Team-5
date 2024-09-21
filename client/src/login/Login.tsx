@@ -33,12 +33,12 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div style={{ backgroundColor: 'lightblue', minHeight: '100vh' }} className="flex items-center justify-center">
       <div className="flex flex-col space-y-4 items-center">
-
+  
          {/* Header */}
          <h1 className="text-2xl font-bold">Log In</h1>
-
+  
         {/* Email Input */}
         <Input onChange={handleUserNameChange}
           isRequired
@@ -47,7 +47,7 @@ export default function Login() {
           defaultValue="client@gmail.com"
           className="max-w-xs"
         />
-
+  
         {/* Password Input */}
         <Input onChange={handlePasswordChange}
           label="Password"
@@ -70,7 +70,7 @@ export default function Login() {
           type={isVisible ? "text" : "password"}
           className="max-w-xs"
         />
-
+  
         {/* Submit Button */}
         <Button color="primary" onClick = {handleSubmit} size="md">
           Log In
@@ -78,4 +78,5 @@ export default function Login() {
       </div>
     </div>
   );
+  
 }
