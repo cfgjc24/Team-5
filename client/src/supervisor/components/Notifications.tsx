@@ -63,11 +63,7 @@ export default function Notifications() {
     }
   };
 
-  const filteredNotifications = notifications.filter(
-    (notification) => notification.status === "emergency" || notification.status === "sos"
-  );
-
-  if (filteredNotifications.length === 0) {
+  if (notifications.length === 0) {
     return null;
   }
 
@@ -76,20 +72,20 @@ export default function Notifications() {
       className="position-fixed top-0 right-0 p-4"
       style={{ zIndex: 1050 }}
     >
-      {filteredNotifications.map((filteredNotification) => (
+      {notifications.map((notification) => (
         <div
-          key={filteredNotification.id}
-          className={`alert ${getAlertClass(filteredNotification.status)} alert-dismissible fade show`}
+          key={notification.id}
+          className={`alert ${getAlertClass(notification.status)} alert-dismissible fade show`}
           role="alert"
         >
-          <strong>[{filteredNotification.status.toUpperCase()}] </strong> {filteredNotification.name}
-          {filteredNotification.comment ? ": " : ""}
-          {filteredNotification.comment}
+          <strong>[{notification.status.toUpperCase()}] </strong> {notification.name}
+          {notification.comment ? ": " : ""}
+          {notification.comment}
           <button
             type="button"
             className="btn-close"
             aria-label="Close"
-            onClick={() => handleDelete(filteredNotification.id)} // Delete on close
+            onClick={() => handleDelete(notification.id)}
           ></button>
         </div>
       ))}

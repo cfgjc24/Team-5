@@ -39,10 +39,9 @@ export default function Supervisor() {
       </div>
 
       <div className="w-full h-full mb-2">
-        <Sidebar />
+        <Sidebar notifications={notifications} />
       </div>
 
-      {/* Add Notifications component to display alerts */}
       <Notifications />
     </div>
   );
