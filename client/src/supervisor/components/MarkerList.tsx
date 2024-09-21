@@ -1,35 +1,20 @@
 import { useState, useEffect, useMemo } from "react";
-import { db } from "../../config/config" ;
+import { getMarkers } from "../../config/config" ;
 import { getDocs, getDoc, collection, addDoc, deleteDoc, doc, updateDoc } from 'firebase/firestore'
 
 export default function MarkerList() {
 
     const [markerList, setMarkerList] = useState([{}]) ;
-    const markerCollection = collection(db, "markers") ;
-    
-
-    async function getMarkers() {
-        const newMarkerList : any [] = [] ;
-        const markers = await getDocs(markerCollection) ;
-        markers.docs.map((doc) => (
-            newMarkerList.push(doc.data())
-        ))
-        setMarkerList(newMarkerList) ;
-        console.log(newMarkerList)
-        // 
-        // console.log(markers) ;
-        // markers.map((marker => addMarker())
-    }
 
     useEffect(() => {
-        console.log(markerList)
-        getMarkers() ;
+        getMarkers().then((value: any []) => {
+            // console.log(value) ;
+            setMarkerList(value) ;
+        })
         
     },[])
 
 
-    
-    
     return <>
         <div className = "markerList" >
             {markerList.map((marker => (
