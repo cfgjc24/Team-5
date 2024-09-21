@@ -22,7 +22,7 @@ function Staff() {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:5000/notifications', {
+      const response = await fetch('http://localhost:4326/notifications', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

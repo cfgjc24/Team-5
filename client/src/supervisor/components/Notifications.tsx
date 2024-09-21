@@ -13,7 +13,7 @@ export default function Notifications() {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const response = await fetch("http://localhost:5000/notifications");
+        const response = await fetch("http://localhost:4326/notifications");
         const data = await response.json();
         const notificationArray: Notification[] = Object.values(data);
         setNotifications(notificationArray);
@@ -31,7 +31,7 @@ export default function Notifications() {
 
   const handleDelete = async (id: number) => {
     try {
-      const response = await fetch(`http://localhost:5000/notifications/${id}`, {
+      const response = await fetch(`http://localhost:4326/notifications/${id}`, {
         method: "DELETE",
       });
 

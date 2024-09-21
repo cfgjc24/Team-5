@@ -9,7 +9,7 @@ export default function Supervisor() {
 
   const fetchNotifications = async () => {
     try {
-      const response = await fetch("http://localhost:5000/notifications");
+      const response = await fetch("http://localhost:4326/notifications");
       const data = await response.json();
 
       if (data.length > 0) {
