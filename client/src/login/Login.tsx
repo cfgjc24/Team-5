@@ -3,6 +3,7 @@ import { Input, Button } from "@nextui-org/react";
 import { EyeFilledIcon } from "./EyeFilledIcon";
 import { EyeSlashFilledIcon } from "./EyeSlashFilledIcon";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/logo.png"; // Import your logo
 
 export default function Login() {
   const [isVisible, setIsVisible] = useState(false);
@@ -42,12 +43,13 @@ export default function Login() {
   };
 
   return (
-    <div
-      className="flex items-center justify-center h-screen"
-    >
+    <div className="flex items-center justify-center h-screen">
       <div className="flex flex-col space-y-4 items-center">
-        {/* Header */}
-        <h1 className="text-2xl font-bold">Log In</h1>
+        {/* Logo and Header */}
+        <div className="flex items-center space-x-2">
+          <img src={logo} alt="Logo" className="h-12 w-12" />
+          <h1 className="text-2xl font-bold">Log In</h1>
+        </div>
 
         {/* Username Input */}
         <Input
@@ -99,4 +101,3 @@ export default function Login() {
     </div>
   );
 }
-
