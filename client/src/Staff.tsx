@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import {Button} from "@nextui-org/react";
+
+
 
 function Staff() {
   const [formData, setFormData] = useState({
@@ -45,15 +48,24 @@ function Staff() {
     }
     ));
   }
-
+  
   return (
     <>
+
       <form onSubmit={handleSubmit}>
         <div>
-          <button type="button" onClick={() => handleButtonClick('good')}>Great</button>
-          <button type="button" onClick={() => handleButtonClick('extend')}>Extend Time</button>
-          <button type="button" onClick={() => handleButtonClick('emergency')}>Emergency</button>
-          <button type="button" onClick={() => handleButtonClick('sos')}>SOS</button>
+        <Button color="primary" onClick={() => handleButtonClick('good')}>
+          Great
+        </Button>
+        <Button color = "primary" onClick ={() => handleButtonClick('extend')}>
+          Extend Time
+        </Button>
+        <Button color = "primary" onClick ={() => handleButtonClick('emergency')}>
+          Emergency
+        </Button>
+        <Button color = "primary" onClick ={() => handleButtonClick('sos')}>
+          SOS
+        </Button>
         </div>
         <input type="text" id="comment" name="comment" value={formData.comment} onChange={handleInputChange}></input>
         <input type="submit" value="Submit"></input>
