@@ -14,7 +14,7 @@ Change the directory with:
 ```cd Team-5/```
 
 Install packages with:  
-```cd client```
+```cd client```  
 ```npm install```
 
 Enter API keys for the Google Maps API and Cloud Firestore into client/.env and client/config/config.tsx respectively:  
