@@ -4,7 +4,7 @@
 Team Members : Emily Flores, Carlos Garcia, Lauren Lascano, Xiaomin Liu, Will Pelech, Diya Tomar, Jesse Xie
 
 ## Project Statement
-For our project, we designed an application for supervisors and staff to streamline their management processes. Users can sign in and will be redirected to their respective pages where supervisors may view staff members on a map and a list of active members. Staff members will be able to check in and notify supervisors for emergencies and meeting extensions along with optional messages to provide details. 
+For our project, we designed an application for supervisors and staff to streamline their management processes. Users can sign in and will be redirected to their respective pages where supervisors may view staff members on a map and a list of active members. Staff members will be able to check in and notify supervisors for emergencies and meeting extensions along with optional messages to provide details. Our project utilizes React.js, Node.js, Express.js, Cloud Firestore, the Google Maps API, Tailwind CSS, and NextUI.
 
 ## Run Instructions
 Clone the repository with:  
