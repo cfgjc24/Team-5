@@ -11,7 +11,7 @@ app.use(cors());
 let notifications = [];
 
 app.post("/notifications", (req, res) => {
-  const { status, comment } = req.body;
+  const { name, status, comment } = req.body;
 
   if (!status) {
     return res.status(400).json({ error: "Status and comment are required." });
@@ -19,7 +19,7 @@ app.post("/notifications", (req, res) => {
 
   id = Date.now();
 
-  notifications.push({ id, status, comment });
+  notifications.push({ id, name, status, comment });
 
   res.status(201).json({ message: "Notification received." });
 });

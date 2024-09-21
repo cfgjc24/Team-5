@@ -2,10 +2,9 @@ import { useState } from 'react';
 import { Button } from "@nextui-org/react";
 
 
-
 function Staff() {
   const [formData, setFormData] = useState({
-    name: "John",
+    name: "Liam Wilson",
     status: "good",
     comment: "",
   })
