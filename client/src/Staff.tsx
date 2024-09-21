@@ -137,11 +137,13 @@ function Staff() {
           onChange={handleInputChange}
           className="mt-10 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
         />
-        <input
+        <Button
+          color="secondary"
           type="submit"
-          value="Submit"
           className="mt-8 p-2 rounded-md shadow-md transition duration-200"
-        />
+        >
+          Submit
+        </Button>
 
         <Button radius="full" className="mt-6" onClick={handleClockOut}>
           Clock Out
