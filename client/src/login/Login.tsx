@@ -27,7 +27,7 @@ export default function Login() {
       navigate("/supervisor") 
     } ;
     if (userName == "staff") {
-      navigate("/staff") 
+      navigate("/clockin") 
     } ;
    
   }
