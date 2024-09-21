@@ -7,12 +7,11 @@ import {
 import { useState, useEffect } from "react";
 import { getMarkers } from "../../config/config.tsx";
 
-// Load API key from environment variable
 const mapKey = import.meta.env.VITE_MAP_API_KEY;
 
 const mapContainerStyle = {
-  width: "600px",
-  height: "400px",
+  width: "100%",
+  height: "100%",
 };
 
 const center = {

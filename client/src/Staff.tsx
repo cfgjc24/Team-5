@@ -1,25 +1,24 @@
 import { useState } from 'react';
-import {Button} from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 
 
 
 function Staff() {
   const [formData, setFormData] = useState({
+    name: "John",
     status: "good",
     comment: "",
   })
-  const [checkOutTime, setCheckOutTime] = useState<Date | null>(null); // State to store the timestamp
+  const [checkOutTime, setCheckOutTime] = useState<Date | null>(null);
 
   const handleCheckOut = () => {
-    const currentTime = new Date(); 
+    const currentTime = new Date();
     setCheckOutTime(currentTime);
     console.log(`Checked out at: ${currentTime}`);
-    // Optionally, send this data to your backend or handle it as needed
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData)
 
     try {
       const response = await fetch('http://localhost:5000/notifications', {
@@ -56,6 +55,7 @@ function Staff() {
     }
     ));
   }
+<<<<<<< HEAD
     return (
         <>
             <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center h-screen">
@@ -89,6 +89,57 @@ function Staff() {
             </form>
         </>
     );
+=======
+
+  return (
+    <>
+      <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center h-screen">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-x-11 md:gap-y-8">
+          <Button
+            color="success"
+            className="w-80 md:w-70"
+            onClick={() => handleButtonClick('good')}
+          >
+            Great
+          </Button>
+          <Button
+            color="primary"
+            className="w-80 md:w-70"
+            onClick={() => handleButtonClick('extend')}
+          >
+            Extend Time
+          </Button>
+          <Button
+            color="warning"
+            className="w-80 md:w-70"
+            onClick={() => handleButtonClick('emergency')}
+          >
+            Emergency
+          </Button>
+          <Button
+            color="danger"
+            className="w-80 md:w-70"
+            onClick={() => handleButtonClick('sos')}
+          >
+            SOS
+          </Button>
+        </div>
+        <input
+          type="text"
+          id="comment"
+          name="comment"
+          value={formData.comment}
+          onChange={handleInputChange}
+          className="mt-4"
+        />
+        <input type="submit" value="Submit" className="mt-2" />
+        <Button radius="full" className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg mt-4" onClick={handleCheckOut}>
+          Check Out
+        </Button>
+      </form>
+    </>
+  )
+>>>>>>> 610345a (Make some progress on the formatting of the supervisor page)
 }
 
 export default Staff;
