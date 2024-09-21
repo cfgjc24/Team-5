@@ -1,3 +1,12 @@
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableColumn,
+  TableRow,
+  TableCell,
+  Button,
+} from "@nextui-org/react";
 import { useState, useEffect } from "react";
 
 interface Notification {
@@ -35,7 +44,6 @@ export default function Notifications() {
       });
 
       if (response.ok) {
-        // Remove the notification from the state
         setNotifications((prevNotifications) =>
           prevNotifications.filter((notification) => notification.id !== id)
         );
@@ -49,37 +57,38 @@ export default function Notifications() {
   };
 
   return (
-    <>
-      <h2>Notifications</h2>
-      <table border="1" cellPadding="10">
-        <thead>
-          <tr>
-            <th>Status</th>
-            <th>Comment</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {notifications.length === 0 ? (
-            <tr>
-              <td colSpan={2} style={{ textAlign: "center" }}>
-                No notifications yet
-              </td>
-            </tr>
-          ) : (
-            notifications.map((notification, index) => (
-              <tr key={index}>
-                <td>{notification.status}</td>
-                <td>{notification.comment}</td>
-                <td>
-                  <button onClick={() => handleDelete(notification.id)}>X</button>
-                </td>
-              </tr>
-            ))
-          )}
-        </tbody>
-      </table>
-    </>
+    <Table aria-label="Notifications">
+      <TableHeader>
+        <TableColumn>Status</TableColumn>
+        <TableColumn>Comment</TableColumn>
+        <TableColumn>Action</TableColumn>
+      </TableHeader>
+      <TableBody>
+        {notifications.length === 0 ? (
+          <TableRow key="no-data">
+            <TableCell className="hidden"> </TableCell>
+            <TableCell aria-colspan={3} colSpan={3} className="text-center">No notifications yet</TableCell>
+            <TableCell className="hidden"> </TableCell>
+          </TableRow>
+        ) : (
+          notifications.map((notification) => (
+            <TableRow key={notification.id}>
+              <TableCell>{notification.status}</TableCell>
+              <TableCell>{notification.comment}</TableCell>
+              <TableCell>
+                <Button
+                  color="danger"
+                  size="sm"
+                  onClick={() => handleDelete(notification.id)}
+                >
+                  Delete
+                </Button>
+              </TableCell>
+            </TableRow>
+          ))
+        )}
+      </TableBody>
+    </Table>
   );
 }
 
