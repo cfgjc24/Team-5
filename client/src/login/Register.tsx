@@ -57,8 +57,7 @@ export default function Register() {
 
   return (
     <div
-      style={{ backgroundColor: "lightblue", minHeight: "100vh" }}
-      className="flex items-center justify-center"
+      className="flex items-center justify-center h-screen"
     > <div className="flex flex-col space-y-4 items-center">
         <h1 className="text-2xl font-bold">Register</h1>
 
@@ -119,6 +118,7 @@ export default function Register() {
 
         <Input
           name="password"
+          isRequired
           onChange={handleChange}
           label="Password"
           endContent={
@@ -140,7 +140,7 @@ export default function Register() {
           className="max-w-xs"
         />
 
-        <Button color="success" onClick={handleRegister} size="md">
+        <Button onClick={handleRegister} size="md">
           Register
         </Button>
 

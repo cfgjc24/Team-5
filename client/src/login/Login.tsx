@@ -43,8 +43,7 @@ export default function Login() {
 
   return (
     <div
-      style={{ backgroundColor: "lightblue", minHeight: "100vh" }}
-      className="flex items-center justify-center"
+      className="flex items-center justify-center h-screen"
     >
       <div className="flex flex-col space-y-4 items-center">
         {/* Header */}
@@ -65,7 +64,6 @@ export default function Login() {
           onChange={handlePasswordChange}
           isRequired
           label="Password"
-          variant="bordered"
           endContent={
             <button
               className="focus:outline-none"
@@ -86,7 +84,7 @@ export default function Login() {
         />
 
         {/* Submit Button */}
-        <Button color="primary" onClick={handleSubmit} size="md">
+        <Button onClick={handleSubmit} size="md">
           Log In
         </Button>
 
