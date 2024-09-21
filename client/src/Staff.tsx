@@ -6,13 +6,14 @@ import { useNavigate } from 'react-router-dom';
 
 function Staff() {
   const [formData, setFormData] = useState({
+    name: "Liam Wilson",
     status: "good",
     comment: "",
   })
   const [checkOutTime, setCheckOutTime] = useState<Date | null>(null); // State to store the timestamp
   const navigate = useNavigate();
   const handleCheckOut = () => {
-    const currentTime = new Date(); 
+    const currentTime = new Date();
     setCheckOutTime(currentTime);
     console.log(`Checked out at: ${currentTime}`);
     //send to backend?
@@ -20,7 +21,6 @@ function Staff() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData)
 
     try {
       const response = await fetch('http://localhost:5000/notifications', {

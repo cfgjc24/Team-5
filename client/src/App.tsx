@@ -6,9 +6,6 @@ import Clock from "./Clock";
 import Supervisor from "./Supervisor";
 import Sidebar from "./supervisor/components/Sidebar";
 import Notifications from "./supervisor/components/Notifications";
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import Login from "./login/Login.tsx";
 import { NextUIProvider } from "@nextui-org/react";
@@ -16,17 +13,19 @@ import { NextUIProvider } from "@nextui-org/react";
 function App() {
   return (
     <>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/staff" element={<Staff />} />
-          <Route path="/clockin" element={<Clock />} />
-          <Route path="/supervisor" element={<Supervisor />} />
-          <Route path="/sidebar" element={<Sidebar />} />
-          <Route path="/notifications" element={<Notifications />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      </Router>
+      <NextUIProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/staff" element={<Staff />} />
+            <Route path="/clockin" element={<Clock />} />
+            <Route path="/supervisor" element={<Supervisor />} />
+            <Route path="/sidebar" element={<Sidebar />} />
+            <Route path="/notifications" element={<Notifications />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </Router>
+      </NextUIProvider>
     </>
   );
 }

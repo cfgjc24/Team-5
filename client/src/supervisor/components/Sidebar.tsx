@@ -7,8 +7,9 @@ import {columns, users} from "./data";
 
 const statusColorMap: Record <string, string> ={
   "Working": "success",
-  "Overtime": "warning",
-  "Emergency": "danger",
+  "Overtime": "primary",
+  "Emergency": "warning",
+  "SOS": "danger",
 };
 
 export default function App() {
@@ -40,10 +41,11 @@ export default function App() {
             {cellValue}
           </Chip>
         );
+    
       case "actions":
         return (
           <div className="relative flex items-center gap-2">
-            <Tooltip content="Details">
+            <Tooltip content="911-119-1919">
               <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
                 <EyeIcon />
               </span>
