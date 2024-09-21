@@ -2,11 +2,35 @@ import React from "react";
 import { Input, Button } from "@nextui-org/react";
 import { EyeFilledIcon } from "./EyeFilledIcon";
 import { EyeSlashFilledIcon } from "./EyeSlashFilledIcon";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom' ;
 
 export default function Login() {
   const [isVisible, setIsVisible] = React.useState<boolean>(false);
 
   const toggleVisibility = () => setIsVisible(!isVisible);
+  const [userName, setUserName] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+
+  const handleUserNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserName(e.target.value);
+  };
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+
+  const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    if (userName == "supervisor") {
+      navigate("/supervisor") 
+    } ;
+    if (userName == "staff") {
+      navigate("/staff") 
+    } ;
+   
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center">
@@ -16,7 +40,7 @@ export default function Login() {
          <h1 className="text-2xl font-bold">Log In</h1>
 
         {/* Email Input */}
-        <Input
+        <Input onChange={handleUserNameChange}
           isRequired
           type="username"
           label="Username"
@@ -25,7 +49,7 @@ export default function Login() {
         />
 
         {/* Password Input */}
-        <Input
+        <Input onChange={handlePasswordChange}
           label="Password"
           variant="bordered"
           placeholder="Enter your password"
@@ -48,7 +72,7 @@ export default function Login() {
         />
 
         {/* Submit Button */}
-        <Button color="primary" size="md">
+        <Button color="primary" onClick = {handleSubmit} size="md">
           Log In
         </Button>
       </div>
