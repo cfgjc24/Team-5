@@ -15,7 +15,6 @@ function App() {
       <NextUIProvider>
         <Router>
           <Routes>
-            <Route path="/" element={<Home />} />
             <Route path="/staff" element={<Staff />} />
             <Route path="/clockin" element={<Clock />} />
             <Route path="/supervisor" element={<Supervisor />} />
