@@ -5,6 +5,7 @@ import Staff from "./Staff";
 import Clock from "./Clock"
 import Supervisor from "./Supervisor";
 import Sidebar from "./supervisor/components/Sidebar";
+import Notifications from "./supervisor/components/Notifications";
 
 function App() {
   return (
@@ -13,9 +14,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/staff" element={<Staff />} />
-          <Route path = "/clockin" element = {<Clock />} />
+          <Route path="/clockin" element = {<Clock />} />
           <Route path="/supervisor" element={<Supervisor />} />          
           <Route path="/sidebar" element={<Sidebar />} />
+          <Route path="/notifications" element={<Notifications />} />
         </Routes>
       </Router>
     </>
